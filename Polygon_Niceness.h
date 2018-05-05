@@ -20,7 +20,8 @@
 #include <CGAL/MP_Float.h>
 #include <CGAL/number_utils.h>
 #include <CGAL/Gmpfr.h>
-
+#include <CGAL/Algebraic_structure_traits.h>
+#include <CGAL/Lazy_exact_nt.h>
 typedef CGAL::Exact_predicates_exact_constructions_kernel K;
 typedef K::Point_2 Point_2;
 typedef K::Segment_2 Segment_2;
@@ -33,6 +34,7 @@ typedef K::FT FT;
 typedef std::vector<Point_2> Point_Set;
 typedef std::size_t size_t;
 typedef CGAL::Random Random;
+//typedef CGAL::<Algebraic_structure_traints<Lazy_exact_nt <Gmpq> >::Sqrt sqrt;
 //#define CGAL::Random.get_int Get_rand_int
 //#define CGAL::Random.get_double Get_rand_double
 //#define CGAL::random_convex_set_2 Get_rand_convex
@@ -45,6 +47,7 @@ OutputIterator o,
 PointGenerator pg,
 Traits t = Default_traits)
 Example : random_convex_set_2 (n,o,pg,Traits t = Default_traits)
+
 The concept PointGenerator defines the requirements for a point generator, 
 which can be used in places where input iterators are called for.
 Polygon_Generator : Has CGAL::Random_points_on_square_2<Point_2, Creator>

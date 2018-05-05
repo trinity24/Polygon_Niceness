@@ -23,7 +23,7 @@ void generate_polygon_plus()
 	int y2 = rand.get_int(10,2000); 
 
 	int b2 = y1>y2 ? y1-y2 : y2-y1;
-	
+		
 	int l1= b1>b2 ? b2:b2;
 	if(l1==b1) b1=b2;
 
@@ -79,15 +79,16 @@ _____________| |_________
 		
 	for(int j=0;j<12;j++)
               file << p[j]<<endl;
+	
 	file<<endl;
 }
-void generate_random_plus()
+void generate_random_plus(int num)
 {
 	ofstream file;
-        file.open("plus.txt");
+        file.open("plus_random_.txt");
         //Point_Set poly_point_set;
         CGAL:Random rand;
-	for(int k=0;k<100;k++)
+	for(int k=0;k<num;k++)
 	{
 		Point_2 p[12];
 		for(int i=0;i<12;i++)
@@ -105,8 +106,6 @@ void generate_random_plus()
 		k4=rand.get_int(50,100);
 		k5=rand.get_int(50,100);
 		k6=rand.get_int(50,100);
-
-
 	
 		p[1]= Point_2(x,y+k2);
 		p[2]= Point_2(x+k3,y+k2);
@@ -179,6 +178,9 @@ void generate_comd()
 }
 void generate_comb_given(int base_len, int base_width, int spike_len[],int spike_width[])
 {
+	/* This takes a particular length : And we can try to vary the width and space between spikes*/
+	/* take width and gap in such a way that the sum perfectly divides the length*/
+	For a given length. 
 	Point_2 base_left = Point_2(x,y);
         Point_2 base_right = Point_2(x+ base_len,y);	
 	int num_spikes = base_width/(spike_width+SPIKE_GAP);
@@ -320,7 +322,6 @@ void generate_orthogonal_polygons()
 	
 void chord_fscore(EdgeIterator e)
 {	
-	
 	for(int i=0;i<n-2;i++)
 	{
 		resolute_segment(polygon+i,polygon+i+1,);
@@ -328,28 +329,56 @@ void chord_fscore(EdgeIterator e)
 	resolute_segment(polygon+n-1,polygon);
 				
 }
-void resolute_edge(Point_2 p1,Point_2 p2,Point_set *ps)
+int compute index(int n,int alpha)
 {
-	
-	for(int i=0;i<)
+	/*  Using exact arithmetic we compute the midpoint's index. */
+		
+}
+void resolute_polygon(Polygon_2 P)
+{	
+	for(EdgeIterator ei=Poly.edges_begin();ei!=Poly.edges_end();ei++)
 	{
-		Segment s(p1,p2);
-		Vector_2 vec = s.to_vector();
-		Point_2 new = p1 + (d * d / v.squared_length()) * v;
-		ps.ps
-	}	
-	//Point_2 mp= midpoint(p1,p2);
+		Point_2 p1(ei[0][0][0],ei[0][0][1]);
+                Point_2 p2(ei[0][1][0],ei[0][1][1]);
+                Segment_2 s(p1,p2);
+		
+		resolute_Edge(p1,p2,);		
+		
+	}
+	EdgeIterator e;
+	
+}	
+void resolute_edge(p1,p2,ps)
+{
+	Point_2 mid= ps+1;
+	Po	
+}
+void resolute_edge(Point_2 p1,Point_2 p2,int n,Point_set *ps)
+{
+	/*get the number of points you get. By using n/2^k =alpha */
+			
+	
+	Point_2 mp= midpoint(p1,p2,ps);
+	K::FT squared_dis = CGAL::squared_distance(p1,p2);
+	K::FT dis = CGAL::sqrt(squared_dis);
+	
+	*(ps+
 	resolute_edge(p1,mp,ps);
-	resolute_edge(mp,p2,ps+total_points_);
+	resolute_edge(mp,p2,ps+);
 	return;						
 }
 
 void alpha_fatness_score();
 
 */
+void generate_set_parameterised_polygons()
+{
+	//increasing fatness by making them more 
+}
 int main()
 {
 
-	generate_plus();
+	generate_random_plus(100);
+	generate_set_parameterised_polygons();
 	return 0;
 }
