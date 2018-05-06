@@ -3,40 +3,75 @@
 #include "Polygon_Niceness.h"
 #include <vector>
 #include <fstream>
-#define DELTA 0.01
+#include <stack>
+#define DELTA 0.25
 using namespace std;
 void resolute_Edge(vector<Point_2> &v,Point_2 p1,Point_2 p2);
-
+void resolve_Edge(Point_2 p1, Point_2 p2 );
 void resolute_Polygon(Polygon_2 Poly,vector<Point_2> &resolved_vertices)
 {
 	for(EdgeIterator ei=Poly.edges_begin();ei!=Poly.edges_end();ei++)
         {
                 Point_2 p1(ei[0][0][0],ei[0][0][1]);
                 Point_2 p2(ei[0][1][0],ei[0][1][1]);
-              	
-                resolute_Edge(resolved_vertices,p1,p2);
+  		resolve_Edge(p1,p2);		            	
+     
+//	        resolute_Edge(resolved_vertices,p1,p2);
 		
         }
 	
 }
 void resolute_Edge(vector<Point_2> &v,Point_2 p1,Point_2 p2)
 {
+	
 	if(CGAL::square(DELTA) < CGAL::squared_distance(p1,p2))
 	{
-		Point_2 mp= CGAL::midpoint(p1,p2);	
-		v.push_back(mp);
+		Point_2 mp= CGAL::midpoint(p1,p2);						v.push_back(mp);
 		resolute_Edge(v, p1,mp);
-		resolute_Edge(v, mp,p2);
-				
-        }
-	
+		resolute_Edge(v, mp,p2);			
+        }		
 	return;
+}
+
+void resolve_Edge(Point_2 p1, Point_2 p2)
+{
+	vector<Point_2> temp_vec;
+	stack<Point_2> work_Stack;
+	work_Stack.push(p1);
+	work_Stack.push(p2);
+	while(!work_Stack.empty())
+	{
+		Point_2 p_right = work_Stack.top();
+		work_Stack.pop();
+		Point_2 p_left = work_Stack.top();
+		work_Stack.pop();
+		Point_2 p_mid;
+		if(CGAL::square(DELTA) < CGAL::squared_distance(p_left,p_right))
+		{
+			
+			p_mid= CGAL::midpoint(p_left,p_right);
+			work_Stack.push(p_left);
+			work_Stack.push(p_mid);
+			work_Stack.push(p_right);	
+		}
+		else
+		{
+			temp_vec.push_back(p_right);
+			if(work_Stack.empty())	
+				break;	
+			work_Stack.push(p_left);			
+		}
+	}
+	for( vector<Point_2>::iterator it=temp_vec.begin();it!=temp_vec.end();it++)
+		cout<<*it<<endl;
+	return;
+	
 }
 
 int main()
 {
-	ofstream file;
-	file.open("polygons_resoluted.txt");
+	ofstream file1;
+	file1.open("polygons_resoluted.txt");
 	Polygon_2 poly_test;
 	
 	vector<Point_2> resolved_vertices;
@@ -47,9 +82,9 @@ int main()
 	resolute_Polygon(poly_test,resolved_vertices);
 	for(vector<Point_2>::iterator it =resolved_vertices.begin();it!=resolved_vertices.end();it++)
 	{
-		file<<*it<<endl;
+		file1<<*it<<endl;
 	}
-	cout
+	cout<<resolved_vertices.size()<<endl;
 		
 	return 0;
 }
