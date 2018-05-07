@@ -16,9 +16,22 @@ int main()
     v.push_back(5);
     v.push_back(2);
     v.push_back(9);
-   Point_2 p(1,1);
-	cout <<p[0]<< " "<<p[1];	
 
+	Polygon_2 P;
+	P.push_back(Point_2(1,2));
+	P.push_back(Point_2(2,8));
+	P.push_back(Point_2(5,6));
+	P.push_back(Point_2(10,10));
+
+	VertexIterator left= P.left_vertex();
+	VertexIterator right= P.right_vertex();
+	VertexIterator top= P.top_vertex();
+	VertexIterator bottom= P.bottom_vertex();
+
+	cout<<left[0][0]<<endl;
+	cout<<right[0][1]<<endl;
+	cout<<top[0][1]<<endl;
+	cout<<bottom[0][1]<<endl;
 
     Circulator c( v.begin(), v.end());
     Container  container( c);
