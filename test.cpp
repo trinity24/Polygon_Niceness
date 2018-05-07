@@ -1,17 +1,32 @@
 #include "Polygon_Niceness.h"
-using namespace std;
+#include <CGAL/basic.h>
+#include <cassert>
+#include <vector>
+#include <algorithm>
+#include <CGAL/circulator.h>
 
+typedef  std::vector<int>::iterator                  I;
+typedef  CGAL::Circulator_from_iterator<I>           Circulator;
+typedef  CGAL::Container_from_circulator<Circulator> Container;
+typedef  Container::iterator                         Iterator;
+using namespace std;
 int main() 
 {
+    std::vector<int> v;
+    v.push_back(5);
+    v.push_back(2);
+    v.push_back(9);
+   Point_2 p(1,1);
+	cout <<p[0]<< " "<<p[1];	
 
-	CGAL:Random rand;
 
-	Point_2 p1= Point_2(rand.get_int(5,10),rand.get_int(10,20));
-	Point_2 p2= Point_2(rand.get_int(5,10),rand.get_int(10,20));
-	Point_2 mp= CGAL::midpoint(p1,p2);
-        K::FT squared_dis = CGAL::squared_distance(p1,p2);
-        K::FT dis = CGAL::sqrt(squared_dis);
-	cout<<dis<<endl;
-		
-	return 0;
+    Circulator c( v.begin(), v.end());
+    Container  container( c);
+    std::sort( container.begin(), container.end());
+    Iterator i = container.begin();
+    assert( *i == 2);
+    i++;    assert( *i == 5);
+    i++;    assert( *i == 9);
+    i++;    assert(  i == container.end());
+    return 0;
 }

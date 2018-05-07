@@ -1,24 +1,28 @@
 
 
 #include "Polygon_Niceness.h"
+#include "poly_resolution.h"
 #include <vector>
 #include <fstream>
 #include <stack>
 #define DELTA 0.25
 using namespace std;
 void resolute_Edge(vector<Point_2> &v,Point_2 p1,Point_2 p2);
-void resolve_Edge(Point_2 p1, Point_2 p2 );
+void resolve_Edge(Point_2 p1, Point_2 p2 ,Polygon_2 &resolved_Poly);
+
 void resolute_Polygon(Polygon_2 Poly,vector<Point_2> &resolved_vertices)
 {
+	
+	Polygon_2 resoluted_Poly;
 	for(EdgeIterator ei=Poly.edges_begin();ei!=Poly.edges_end();ei++)
         {
                 Point_2 p1(ei[0][0][0],ei[0][0][1]);
                 Point_2 p2(ei[0][1][0],ei[0][1][1]);
-  		resolve_Edge(p1,p2);		            	
-     
-//	        resolute_Edge(resolved_vertices,p1,p2);
-		
+  		resolve_Edge(p1,p2,resoluted_Poly);		            	
+     	       	//resolute_Edge(resolved_vertices,p1,p2);
+				
         }
+	cout<<"Size of resoluted_Polygon is "<<resoluted_Poly.size();
 	
 }
 void resolute_Edge(vector<Point_2> &v,Point_2 p1,Point_2 p2)
@@ -33,9 +37,8 @@ void resolute_Edge(vector<Point_2> &v,Point_2 p1,Point_2 p2)
 	return;
 }
 
-void resolve_Edge(Point_2 p1, Point_2 p2)
+void resolve_Edge(Point_2 p1, Point_2 p2,Polygon_2 &resoluted_Poly)
 {
-	vector<Point_2> temp_vec;
 	stack<Point_2> work_Stack;
 	work_Stack.push(p1);
 	work_Stack.push(p2);
@@ -56,18 +59,19 @@ void resolve_Edge(Point_2 p1, Point_2 p2)
 		}
 		else
 		{
-			temp_vec.push_back(p_right);
+			resoluted_Poly.push_back(p_right);
 			if(work_Stack.empty())	
 				break;	
 			work_Stack.push(p_left);			
 		}
 	}
-	for( vector<Point_2>::iterator it=temp_vec.begin();it!=temp_vec.end();it++)
+	/*for( vector<Point_2>::iterator it=temp_vec.begin();it!=temp_vec.end();it++)
 		cout<<*it<<endl;
+*/
 	return;
 	
 }
-
+/*
 int main()
 {
 	ofstream file1;
@@ -84,7 +88,7 @@ int main()
 	{
 		file1<<*it<<endl;
 	}
-	cout<<resolved_vertices.size()<<endl;
+//	cout<<resolved_vertices.size()<<endl;
 		
 	return 0;
-}
+}*/
