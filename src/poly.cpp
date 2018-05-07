@@ -1,5 +1,5 @@
 
-#include "Polygon_Niceness.h"
+#include <Polygon_Niceness.h>
 #include <fstream>
 #define delta 0.5
 #define SPIKE_GAP 20

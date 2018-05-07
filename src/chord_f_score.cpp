@@ -1,5 +1,5 @@
-#include "Polygon_Niceness.h"
-#include "Polygon_utilities.h"
+#include <Polygon_Niceness.h>
+#include <Polygon_utilities.h>
 #include <climits>
 #include <stack>
 #include <vector>

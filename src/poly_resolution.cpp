@@ -1,7 +1,7 @@
 
 
-#include "Polygon_Niceness.h"
-#include "poly_resolution.h"
+#include <Polygon_Niceness.h>
+#include <poly_resolution.h>
 #include <vector>
 #include <fstream>
 #include <stack>
