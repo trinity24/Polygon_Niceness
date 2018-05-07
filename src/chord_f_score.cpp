@@ -154,15 +154,3 @@ void get_sub_Polygon(Point_2 p1,Point_2 p2,Polygon_2 &P,Polygon_2 &P_1)
 	}
 	return;
 }
-void generate_L_infinity_balls()
-{
-	/*Generate L-infinity balls for the */	
-		
-}
-void alpha_fatness_Score()
-{
-	Polygon_2 B_i;
-	/*For different radi*/
-	
-}
-
