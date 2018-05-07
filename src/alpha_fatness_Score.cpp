@@ -1,5 +1,3 @@
-
-
 #include <climits>
 #include "Polygon_Niceness.h"
 #include <list>
@@ -52,9 +50,7 @@ K::FT alpha_fatness_Score(Polygon_2 &P)
 	{
 		/* For each point on boundary, get the max_alpha using the Linfinity balls*/
 
-		max_alpha= CGAL::max(get_Linfinity_balls(*vi,P),max_alpha);
-						
-		
+		max_alpha= CGAL::max(get_Linfinity_balls(*vi,P),max_alpha);			
 	}
 	cout<<"Alpha-Fatness Score :  "<<max_alpha<<endl;
 	return max_alpha;
@@ -63,8 +59,7 @@ K::FT alpha_fatness_Score(Polygon_2 &P)
 
 
 K::FT intersection_area(Polygon_2 &p1, Polygon_2 &p2)
-{
-		
+{		
 	list<Polygon_with_holes_2> poly_Intersection;
 	CGAL::intersection(p1, p2, back_inserter(poly_Intersection));
  	K::FT intersection_Area = 0;
@@ -77,6 +72,13 @@ K::FT intersection_area(Polygon_2 &p1, Polygon_2 &p2)
 
 int main()
 {
-	cout<<"Something\n";
-	
+	Polygon_2 p;
+	p.push_back(Point_2(0,0));
+	p.push_back(Point_2(0,1));
+	p.push_back(Point_2(1,1));
+	p.push_back(Point_2(1,0));
+
+	K::FT alpha = alpha_fatness(p);
+	cout<<"The fatness of the polygon: "<<alpha<<endl;
+	return 0;	
 }

@@ -38,6 +38,8 @@ typedef std::vector<Point_2> Point_Set;
 typedef std::size_t size_t;
 typedef CGAL::Random Random;
 typedef Polygon_2::Vertex_circulator VertexCirculator;
+typedef std::list<Polygon_with_holes_2>::iterator LIT;
+
 //typedef CGAL::<Algebraic_structure_traints<Lazy_exact_nt <Gmpq> >::Sqrt sqrt;
 //#define CGAL::Random.get_int Get_rand_int
 //#define CGAL::Random.get_double Get_rand_double
